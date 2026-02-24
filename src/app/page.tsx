@@ -3,7 +3,7 @@
 import * as React from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ShieldCheck, UploadCloud, UserCheck, LayoutDashboard } from "lucide-react"
 import { LoginModal } from "@/components/auth/LoginModal"
 import { PlaceHolderImages } from "@/lib/placeholder-images"
