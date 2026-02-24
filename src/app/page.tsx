@@ -1,13 +1,17 @@
 "use client"
 
 import * as React from "react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { ShieldCheck, UploadCloud, UserCheck, LayoutDashboard } from "lucide-react"
 import { LoginModal } from "@/components/auth/LoginModal"
+import { PlaceHolderImages } from "@/lib/placeholder-images"
 
 export default function LandingPage() {
   const [isLoginOpen, setIsLoginOpen] = React.useState(false)
+
+  const heroImage = PlaceHolderImages.find(img => img.id === 'academic-hero')
 
   const features = [
     {
@@ -51,7 +55,7 @@ export default function LandingPage() {
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative py-20 lg:py-32 px-6 overflow-hidden bg-gradient-to-br from-background via-white to-accent/20">
-          <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
+          <div className="max-w-6xl mx-auto text-center space-y-8 relative z-10">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 text-secondary text-sm font-semibold border border-primary/30 mx-auto">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
@@ -59,19 +63,36 @@ export default function LandingPage() {
               </span>
               The Future of Education
             </div>
-            <h1 className="text-5xl lg:text-7xl font-headline font-extrabold text-secondary leading-tight">
+            <h1 className="text-5xl lg:text-7xl font-headline font-extrabold text-secondary leading-tight max-w-4xl mx-auto">
               EX – Smart Digital <span className="text-primary drop-shadow-sm">Exam Center</span>
             </h1>
             <p className="text-lg lg:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
               A secure platform where teachers upload exams and students attempt tests using special access keys.
             </p>
-            <Button 
-              size="lg" 
-              onClick={() => setIsLoginOpen(true)}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-10 h-14 rounded-full shadow-lg hover:shadow-xl transition-all font-bold"
-            >
-              Login to Get Started
-            </Button>
+            <div className="flex justify-center gap-4">
+              <Button 
+                size="lg" 
+                onClick={() => setIsLoginOpen(true)}
+                className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-10 h-14 rounded-full shadow-lg hover:shadow-xl transition-all font-bold"
+              >
+                Login to Get Started
+              </Button>
+            </div>
+
+            {heroImage && (
+              <div className="mt-16 relative group max-w-5xl mx-auto">
+                <div className="absolute -inset-1 bg-gradient-to-r from-primary/30 to-secondary/30 rounded-[2.5rem] blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+                <Image 
+                  src={heroImage.imageUrl}
+                  alt={heroImage.description}
+                  width={1080}
+                  height={600}
+                  priority
+                  className="relative rounded-[2rem] shadow-2xl border border-white/20"
+                  data-ai-hint={heroImage.imageHint}
+                />
+              </div>
+            )}
           </div>
         </section>
 
